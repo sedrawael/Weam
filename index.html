@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weam Wael Alawad — Civil Site Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#4A3B52;
+    --navy-deep:#352A3C;
+    --paper:#FBF6F0;
+    --paper-dim:#F1E7DB;
+    --concrete:#A89C9E;
+    --charcoal:#3C3236;
+    --amber:#C98A56;
+    --rebar:#A14B5C;
+    --line:rgba(74,59,82,0.16);
+    --line-light:rgba(251,246,240,0.18);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--charcoal);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.disp{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:inherit; text-decoration:none;}
+
+  /* ---------- blueprint grid backdrop ---------- */
+  .blueprint{
+    background-color:var(--navy);
+    background-image:
+      linear-gradient(var(--line-light) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-light) 1px, transparent 1px);
+    background-size:40px 40px;
+    position:relative;
+  }
+  .blueprint::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(251,246,240,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(251,246,240,0.08) 1px, transparent 1px);
+    background-size:200px 200px;
+    pointer-events:none;
+  }
+
+  /* ---------- top contact bar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    background:var(--navy-deep);
+    border-bottom:2px solid var(--amber);
+    display:flex; justify-content:space-between; align-items:center;
+    padding:12px 28px;
+    color:var(--paper);
+  }
+  .topbar .brand{font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.06em;}
+  .topbar .brand span{color:var(--amber);}
+  .contact-chips{display:flex; gap:10px; flex-wrap:wrap;}
+  .chip{
+    display:flex; align-items:center; gap:7px;
+    background:rgba(251,246,240,0.06);
+    border:1px solid rgba(251,246,240,0.25);
+    color:var(--paper);
+    padding:7px 13px;
+    border-radius:18px;
+    font-size:12.5px;
+    font-family:'JetBrains Mono',monospace;
+    transition:all .18s ease;
+    white-space:nowrap;
+  }
+  .chip:hover{background:var(--amber); border-color:var(--amber); color:var(--navy-deep); transform:translateY(-1px);}
+  .chip svg{width:14px; height:14px; flex-shrink:0;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:90px 8vw 70px;
+    position:relative;
+    color:var(--paper);
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--amber);
+    font-size:13px;
+    letter-spacing:0.18em;
+    margin-bottom:18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:""; width:34px; height:2px; background:var(--amber);}
+  .hero h1{
+    font-size:clamp(40px,7vw,84px);
+    line-height:1.02;
+    color:var(--paper);
+    max-width:14ch;
+  }
+  .hero .role{
+    margin-top:18px;
+    font-size:clamp(16px,2vw,21px);
+    color:#E3D6E6;
+    font-weight:400;
+    max-width:46ch;
+  }
+  .hero .role b{color:var(--amber); font-weight:600;}
+
+  /* title block — engineering drawing stamp */
+  .title-block{
+    margin-top:54px;
+    border:1.5px solid rgba(251,246,240,0.4);
+    border-radius:10px;
+    overflow:hidden;
+    max-width:640px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+  }
+  .title-block .row{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    border-bottom:1px solid rgba(251,246,240,0.25);
+  }
+  .title-block .row:last-child{border-bottom:none;}
+  .title-block .cell{
+    padding:10px 14px;
+    border-right:1px solid rgba(251,246,240,0.25);
+  }
+  .title-block .cell:last-child{border-right:none;}
+  .title-block .cell .k{color:var(--amber); font-size:10px; letter-spacing:0.1em; display:block; margin-bottom:4px;}
+  .title-block .cell .v{color:var(--paper);}
+
+  /* ---------- section shell ---------- */
+  section{padding:90px 8vw;}
+  .sec-head{display:flex; align-items:baseline; gap:18px; margin-bottom:50px;}
+  .sec-num{font-family:'JetBrains Mono',monospace; color:var(--amber); font-size:14px;}
+  .sec-head h2{font-size:clamp(26px,3.4vw,40px); color:var(--navy);}
+  .sec-head .rule{flex:1; height:1px; background:var(--line);}
+  section.dark .sec-head h2{color:var(--paper);}
+  section.dark .sec-num{color:var(--amber);}
+  section.dark .sec-head .rule{background:var(--line-light);}
+
+  /* ---------- summary ---------- */
+  .summary-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:60px; align-items:start;}
+  .summary-text{font-size:18px; color:var(--charcoal); max-width:60ch;}
+  .stat-card{
+    border:1px solid var(--line);
+    border-left:4px solid var(--amber);
+    border-radius:4px 10px 10px 4px;
+    padding:22px 24px;
+    margin-bottom:16px;
+    background:#fff;
+  }
+  .stat-card .num{font-family:'Cormorant Garamond',serif; font-weight:700; font-size:36px; color:var(--navy); line-height:1;}
+  .stat-card .lbl{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--concrete); margin-top:6px; text-transform:uppercase; letter-spacing:0.06em;}
+
+  /* ---------- experience timeline ---------- */
+  .timeline{position:relative; padding-left:32px;}
+  .timeline::before{
+    content:""; position:absolute; left:5px; top:6px; bottom:6px; width:2px;
+    background:repeating-linear-gradient(to bottom, var(--amber) 0 8px, transparent 8px 16px);
+  }
+  .tl-item{position:relative; margin-bottom:54px;}
+  .tl-item:last-child{margin-bottom:0;}
+  .tl-item::before{
+    content:""; position:absolute; left:-32px; top:5px;
+    width:12px; height:12px; border-radius:50%;
+    background:var(--paper); border:3px solid var(--amber);
+  }
+  .tl-period{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--rebar); margin-bottom:6px; letter-spacing:0.03em;}
+  .tl-role{font-family:'Cormorant Garamond',serif; font-weight:600; font-style:italic; font-size:25px; color:var(--navy);}
+  .tl-org{font-size:15px; color:var(--concrete); margin-bottom:14px; font-weight:600;}
+  .tl-item ul{list-style:none; max-width:68ch;}
+  .tl-item li{
+    position:relative; padding-left:20px; margin-bottom:9px; font-size:15px; color:var(--charcoal);
+  }
+  .tl-item li::before{content:"▸"; position:absolute; left:0; color:var(--amber); font-size:13px;}
+
+  /* ---------- education ---------- */
+  .edu-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .edu-card{
+    background:rgba(251,246,240,0.05);
+    border:1px solid var(--line-light);
+    border-radius:10px;
+    padding:28px;
+  }
+  .edu-card .deg{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:21px; color:var(--paper); margin-bottom:8px;}
+  .edu-card .inst{font-size:14px; color:#D6C6D9; margin-bottom:14px;}
+  .edu-meta{display:flex; gap:18px; font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--amber); flex-wrap:wrap;}
+  .edu-meta span{display:block;}
+  .edu-meta b{color:#E3D6E6; display:block; font-size:10px; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:3px; font-weight:400;}
+
+  /* ---------- skills ---------- */
+  .skills-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:40px 60px;}
+  .skill-group h3{font-size:14px; color:var(--rebar); letter-spacing:0.08em; margin-bottom:16px;}
+  .skill-row{margin-bottom:14px;}
+  .skill-row .top{display:flex; justify-content:space-between; font-size:13.5px; margin-bottom:6px;}
+  .skill-row .top span:first-child{color:var(--charcoal); font-weight:600;}
+  .skill-row .top span:last-child{font-family:'JetBrains Mono',monospace; color:var(--concrete); font-size:11px;}
+  .gauge{height:6px; background:var(--paper-dim); position:relative; overflow:hidden; border-radius:4px;}
+  .gauge::after{
+    content:"";  position:absolute; left:0; top:0; bottom:0;
+    width:var(--w,80%);
+    background:linear-gradient(90deg, var(--navy), var(--amber));
+    border-radius:4px;
+  }
+  .tag-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;}
+  .tag{
+    font-family:'JetBrains Mono',monospace; font-size:12px;
+    border:1px solid var(--line); padding:6px 13px; color:var(--navy);
+    border-radius:14px;
+  }
+
+  /* ---------- certifications ---------- */
+  .cert-list{border-top:1px solid var(--line-light);}
+  .cert-row{
+    display:grid; grid-template-columns:90px 1fr 200px;
+    gap:18px; align-items:center;
+    padding:16px 0; border-bottom:1px solid var(--line-light);
+  }
+  .cert-row .yr{font-family:'JetBrains Mono',monospace; color:var(--amber); font-size:15px; font-weight:600;}
+  .cert-row .name{color:var(--paper); font-size:14.5px;}
+  .cert-row .org{font-family:'JetBrains Mono',monospace; color:#BBA8BE; font-size:11.5px; text-align:right;}
+  @media(max-width:720px){
+    .cert-row{grid-template-columns:60px 1fr; }
+    .cert-row .org{grid-column:2; text-align:left; margin-top:2px;}
+  }
+
+  /* ---------- membership seal ---------- */
+  .membership{
+    display:flex; align-items:center; gap:40px;
+    background:#fff; border:1px solid var(--line); border-left:4px solid var(--navy);
+    border-radius:4px 10px 10px 4px;
+    padding:36px;
+    flex-wrap:wrap;
+  }
+  .seal{
+    width:108px; height:108px; flex-shrink:0;
+    border:3px solid var(--navy); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; flex-direction:column;
+    font-family:'JetBrains Mono',monospace; color:var(--navy);
+    position:relative;
+  }
+  .seal::before{
+    content:""; position:absolute; inset:8px; border:1px dashed var(--amber); border-radius:50%;
+  }
+  .seal .id{font-size:18px; font-weight:700;}
+  .seal .small{font-size:8px; letter-spacing:0.08em; margin-top:2px;}
+  .membership-text h3{color:var(--navy); font-size:19px; margin-bottom:8px;}
+  .membership-text p{font-size:14.5px; color:var(--charcoal); max-width:62ch;}
+
+  /* ---------- footer / cta ---------- */
+  footer{
+    padding:80px 8vw 50px;
+    text-align:center;
+  }
+  footer h2{font-size:clamp(28px,4vw,46px); color:var(--paper); margin-bottom:20px;}
+  footer p{color:#D6C6D9; max-width:54ch; margin:0 auto 36px; font-size:15px;}
+  .cta-row{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+  .btn{
+    font-family:'JetBrains Mono',monospace; font-size:13px;
+    padding:14px 26px; border:1.5px solid var(--amber);
+    color:var(--amber); display:inline-flex; align-items:center; gap:8px;
+    transition:all .18s ease;
+    border-radius:24px;
+  }
+  .btn:hover{background:var(--amber); color:var(--navy-deep);}
+  .btn.solid{background:var(--amber); color:var(--navy-deep);}
+  .btn.solid:hover{background:var(--paper); border-color:var(--paper);}
+  .foot-note{margin-top:50px; font-size:11.5px; color:#A6919F; font-family:'JetBrains Mono',monospace;}
+
+  @media(max-width:860px){
+    .summary-grid, .edu-grid, .skills-grid{grid-template-columns:1fr;}
+    .title-block .row{grid-template-columns:1fr;}
+    .title-block .cell{border-right:none; border-bottom:1px solid rgba(251,246,240,0.25);}
+    .topbar{flex-direction:column; gap:10px; align-items:flex-start;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+
+  /* ---------- language toggle ---------- */
+  .lang-btn{
+    display:flex; align-items:center; gap:7px;
+    background:var(--amber);
+    border:1px solid var(--amber);
+    color:var(--navy-deep);
+    padding:7px 15px;
+    border-radius:18px;
+    font-size:12.5px;
+    font-family:'JetBrains Mono',monospace;
+    font-weight:600;
+    cursor:pointer;
+    transition:all .18s ease;
+    white-space:nowrap;
+  }
+  .lang-btn:hover{background:var(--paper); border-color:var(--paper);}
+  .lang-btn svg{width:14px; height:14px; flex-shrink:0;}
+
+  /* ---------- Arabic typography ---------- */
+  html[lang="ar"] body{font-family:'Tajawal',sans-serif;}
+  html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] .disp,
+  html[lang="ar"] .tl-role, html[lang="ar"] .deg, html[lang="ar"] .brand,
+  html[lang="ar"] footer h2{
+    font-family:'Amiri',serif;
+    font-weight:700;
+    letter-spacing:0;
+  }
+  html[lang="ar"] .eyebrow, html[lang="ar"] .tl-period, html[lang="ar"] .edu-meta,
+  html[lang="ar"] .skill-row .top span:last-child, html[lang="ar"] .tag,
+  html[lang="ar"] .cert-row .yr, html[lang="ar"] .cert-row .org,
+  html[lang="ar"] .title-block, html[lang="ar"] .seal, html[lang="ar"] .foot-note,
+  html[lang="ar"] .btn, html[lang="ar"] .chip, html[lang="ar"] .lang-btn{
+    font-family:'Tajawal',sans-serif;
+  }
+
+  /* ---------- RTL layout fixes ---------- */
+  html[dir="rtl"] .eyebrow::before{order:2;}
+  html[dir="rtl"] .tl-item li::before{content:"◂"; right:0; left:auto;}
+  html[dir="rtl"] .tl-item li{padding-right:20px; padding-left:0;}
+  html[dir="rtl"] .timeline{padding-right:32px; padding-left:0;}
+  html[dir="rtl"] .timeline::before{right:5px; left:auto;}
+  html[dir="rtl"] .tl-item::before{right:-32px; left:auto;}
+  html[dir="rtl"] .stat-card{border-left:none; border-right:4px solid var(--amber);}
+  html[dir="rtl"] .gauge::after{left:auto; right:0;}
+  html[dir="rtl"] .membership{border-left:none; border-right:4px solid var(--navy);}
+  html[dir="rtl"] .cert-row .org{text-align:left;}
+  html[dir="rtl"] .summary-grid, html[dir="rtl"] .skills-grid{direction:rtl;}
+  @media(max-width:720px){
+    html[dir="rtl"] .cert-row .org{text-align:right; grid-column:1;}
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP CONTACT BAR -->
+<div class="topbar blueprint">
+  <div class="brand" data-ar="و. و. العوض &nbsp;/&nbsp; مهندس مدني مواقع">W.W. <span>ALAWAD</span> &nbsp;/&nbsp; CIVIL SITE ENGINEER</div>
+  <div class="contact-chips">
+    <button class="lang-btn" id="langToggle" type="button">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+      AR — العربية
+    </button>
+    <a class="chip" href="tel:+962779643716">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      +962 7 7964 3716
+    </a>
+    <a class="chip" href="mailto:weamalawad93@gmail.com">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16v16H4z" stroke="none"/><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+      weamalawad93@gmail.com
+    </a>
+    <a class="chip" href="https://www.linkedin.com/in/weam-alawad-691593342?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener">
+      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.28c-.97 0-1.75-.79-1.75-1.76s.78-1.75 1.75-1.75 1.75.78 1.75 1.75-.78 1.76-1.75 1.76zm13.5 10.28h-3v-4.5c0-1.07-.02-2.45-1.49-2.45-1.5 0-1.73 1.17-1.73 2.37v4.58h-3v-9h2.89v1.23h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.59v4.74z"/></svg>
+      <span data-ar="صفحة لينكدإن">LinkedIn Profile</span>
+    </a>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="blueprint">
+  <div class="hero">
+    <div class="eyebrow" data-ar="عضو مسجل — نقابة المهندسين الأردنيين">REGISTERED MEMBER — JORDAN ENGINEERS ASSOCIATION</div>
+    <h1 data-ar="وئام وائل<br>شفيق العوض">Weam Wael<br>Shafiq Alawad</h1>
+    <p class="role" data-ar="مهندس مدني مواقع بخبرة ميدانية تقارب <b>4 سنوات</b> في الإشراف على أعمال الخرسانة الإنشائية لمشاريع كبرى — منها مشروع المستشفى العسكري في معان — ومحاضر غير متفرغ في الهندسة المدنية بجامعة البلقاء التطبيقية.">Civil Site Engineer with nearly <b>4 years</b> supervising structural concrete works on major projects — including the Ma'an Military Hospital — and a part-time lecturer in civil engineering at Al-Balqa Applied University.</p>
+
+    <div class="title-block">
+      <div class="row">
+        <div class="cell"><span class="k" data-ar="إعداد">DRAWN BY</span><span class="v">W. ALAWAD</span></div>
+        <div class="cell"><span class="k" data-ar="التخصص">DISCIPLINE</span><span class="v" data-ar="مدني / إنشائي">CIVIL / STRUCTURAL</span></div>
+        <div class="cell"><span class="k" data-ar="الموقع">LOCATION</span><span class="v" data-ar="معان، الأردن">MA'AN, JORDAN</span></div>
+      </div>
+      <div class="row">
+        <div class="cell"><span class="k" data-ar="رقم العضوية">JEA MEMBERSHIP</span><span class="v" data-ar="142204">NO. 142204</span></div>
+        <div class="cell"><span class="k" data-ar="منذ">SINCE</span><span class="v" data-ar="5 نوفمبر 2017">05 NOV 2017</span></div>
+        <div class="cell"><span class="k" data-ar="الحالة">STATUS</span><span class="v" data-ar="نشط ومرخّص">ACTIVE &amp; LICENSED</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<section id="summary">
+  <div class="sec-head"><span class="sec-num">01</span><h2 data-ar="الملخص المهني">Professional Summary</h2><div class="rule"></div></div>
+  <div class="summary-grid">
+    <p class="summary-text" data-ar="مهندس مدني معتمد وعضو مسجل في نقابة المهندسين الأردنيين، يمتلك خبرة ميدانية متينة تقارب أربع سنوات في الإشراف على الأعمال المدنية وإدارتها لمشاريع إنشائية كبرى. خلفية أكاديمية قوية، بما في ذلك خبرة تدريس متخصصة في جامعة البلقاء التطبيقية. كفاءة عالية في حصر الكميات المتقدم، مراجعة المخططات التنفيذية، التحقق من التصميم الإنشائي، والتطبيق الصارم لمعايير السلامة والصحة والبيئة في الموقع — مع إتقان استخدام البرامج الهندسية الحديثة لتحسين تنفيذ المشاريع والالتزام بالجداول الزمنية.">
+      A certified Civil Engineer and registered member of the Jordan Engineers Association with nearly four years of solid field experience supervising and managing civil works for major construction projects. Strong academic background, including specialized lecturing experience at Al-Balqa Applied University. Highly proficient in advanced quantity surveying, shop-drawing review, structural design validation, and rigorous implementation of site HSE standards — adept at using modern engineering software to optimize project execution and delivery timelines.
+    </p>
+    <div>
+      <div class="stat-card"><div class="num">~4 YRS</div><div class="lbl" data-ar="سنوات الإشراف الميداني">Site Supervision Experience</div></div>
+      <div class="stat-card"><div class="num">14</div><div class="lbl" data-ar="شهادة ودورة مهنية">Professional Certifications</div></div>
+      <div class="stat-card"><div class="num">142204</div><div class="lbl" data-ar="رقم عضوية نقابة المهندسين">JEA Membership ID</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background:var(--paper-dim);">
+  <div class="sec-head"><span class="sec-num">02</span><h2 data-ar="الخبرة العملية">Professional Experience</h2><div class="rule"></div></div>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-period" data-ar="مارس 2024 – يناير 2026 &nbsp;|&nbsp; مارس 2019 – ديسمبر 2022">MAR 2024 – JAN 2026 &nbsp;|&nbsp; MAR 2019 – DEC 2022</div>
+      <div class="tl-role" data-ar="مهندس مدني مواقع">Civil Site Engineer</div>
+      <div class="tl-org" data-ar="شركة م. أبو عيشة وإخوانه للمقاولات — مشروع المستشفى العسكري في معان">M.A. Abu-Eisheh &amp; Bros. Contracting Co. — Ma'an Military Hospital Project</div>
+      <ul>
+        <li data-ar="تنفيذ إشراف ميداني يومي شامل على جميع الأعمال المدنية والخرسانة الإنشائية، مع ضمان الالتزام الكامل بالمواصفات الفنية وأكواد البناء والمخططات الاستشارية المعتمدة.">Executed comprehensive daily field supervision of all civil and structural concrete works, ensuring alignment with technical specifications, building codes, and approved consulting drawings.</li>
+        <li data-ar="الإشراف على تنسيق طواقم العمل والعمالة والمقاولين الفرعيين في الموقع، مع متابعة الجداول الزمنية الأساسية لضمان تحقيق المراحل المستهدفة في الوقت المحدد.">Supervised and synchronized on-site crews, labor forces, and subcontractors while tracking baseline schedules to meet target milestones.</li>
+        <li data-ar="مراجعة المخططات التنفيذية الإنشائية وجداول تجهيز حديد التسليح (BBS)، وحل المشكلات الفنية وتعارضات قابلية التنفيذ في الموقع.">Reviewed structural shop drawings and bar bending schedules (BBS), resolving technical and constructability conflicts on site.</li>
+        <li data-ar="تطبيق بروتوكولات ضبط الجودة على المواد الواردة، وإدارة روتين الفحوصات المخبرية، والحفاظ على دليل السلامة والصحة والبيئة في الموقع.">Enforced quality control protocols on incoming materials, managed lab testing routines, and maintained the site's HSE manual.</li>
+      </ul>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-period" data-ar="الفصل الدراسي الثاني، 2018 / 2019">SECOND SEMESTER, 2018 / 2019</div>
+      <div class="tl-role" data-ar="محاضر هندسي غير متفرغ">Part-Time Engineering Lecturer</div>
+      <div class="tl-org" data-ar="جامعة البلقاء التطبيقية — كلية معان الجامعية">Al-Balqa Applied University — Ma'an University College</div>
+      <ul>
+        <li data-ar="تقديم محاضرات أكاديمية وعملية في: المواصفات والعقود الهندسية، الرسم الهندسي المدني، حصر كميات الطرق، وتكنولوجيا البناء.">Delivered academic and practical lectures: Engineering Specifications &amp; Contracts, Civil Engineering Drawing, Quantity Surveying / Roads, and Construction Technology.</li>
+        <li data-ar="إعداد مواد تعليمية متكاملة، وصياغة تقييمات مخبرية فنية، وتقييم أداء الطلبة عبر تكليفات فنية متخصصة وامتحانات تحريرية.">Developed instructional coursework, formulated technical lab assessments, and evaluated student performance via assignments and written exams.</li>
+      </ul>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-period" data-ar="سبتمبر 2018 – سبتمبر 2019 · برنامج تدريب الخريجين لمدة سنة">SEP 2018 – SEP 2019 · 1-YEAR GRADUATE PROGRAM</div>
+      <div class="tl-role" data-ar="مهندس مدني متدرب">Trainee Civil Engineer</div>
+      <div class="tl-org" data-ar="بلدية معان الكبرى">Greater Ma'an Municipality</div>
+      <ul>
+        <li data-ar="تم اختياره لبرنامج تدريب المهندسين الخريجين المكثف تحت إشراف ورعاية مباشرة من وزارة الإدارة المحلية.">Selected for the Graduate Engineers Training Program under sponsorship of the Ministry of Municipal Affairs.</li>
+        <li data-ar="المشاركة في أعمال المسح الموقعي، وفحوصات السلامة الإنشائية، وتدقيق رخص البناء، وإعداد تقارير صيانة البنية التحتية والطرق الإسفلتية.">Took part in localized surveying, structural integrity inspections, building-permit auditing, and asphalt road maintenance reporting.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="blueprint dark">
+  <div class="sec-head"><span class="sec-num">03</span><h2 data-ar="التعليم">Education</h2><div class="rule"></div></div>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="deg" data-ar="بكالوريوس العلوم في الهندسة المدنية">B.Sc. in Civil Engineering</div>
+      <div class="inst" data-ar="جامعة الحسين بن طلال — معان، الأردن">Al-Hussein Bin Talal University — Ma'an, Jordan</div>
+      <div class="edu-meta">
+        <span data-ar="<b>تاريخ التخرج</b>سبتمبر 2017"><b>Graduated</b>September 2017</span>
+        <span data-ar="<b>التقدير</b>جيد (68.30)"><b>Grade</b>Good (GPA 68.30)</span>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="deg" data-ar="الثانوية العامة — الفرع العلمي">General Secondary Certificate — Scientific Stream</div>
+      <div class="inst" data-ar="مدرسة سكاكا الثانوية العاشرة — المملكة العربية السعودية">The 10th Secondary School, Sakaka — Kingdom of Saudi Arabia</div>
+      <div class="edu-meta">
+        <span data-ar="<b>العام</b>2010 / 2011"><b>Year</b>2010 / 2011</span>
+        <span data-ar="<b>التقدير</b>جيد جدًا (89.38)"><b>Grade</b>Very Good (89.38)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec-head"><span class="sec-num">04</span><h2 data-ar="المهارات والكفاءات">Skills &amp; Competencies</h2><div class="rule"></div></div>
+  <div class="skills-grid">
+
+    <div class="skill-group">
+      <h3 data-ar="البرامج الهندسية">ENGINEERING SOFTWARE</h3>
+      <div class="skill-row"><div class="top"><span data-ar="PROKON — التحليل والتصميم الإنشائي">PROKON — Structural Analysis &amp; Design</span><span data-ar="متقدم">ADVANCED</span></div><div class="gauge" style="--w:90%"></div></div>
+      <div class="skill-row"><div class="top"><span data-ar="Autodesk Revit Structure (نمذجة BIM)">Autodesk Revit Structure (BIM)</span><span data-ar="متقدم">ADVANCED</span></div><div class="gauge" style="--w:85%"></div></div>
+      <div class="skill-row"><div class="top"><span data-ar="تطبيقات نظم المعلومات الجغرافية (GIS)">GIS Applications</span><span data-ar="جيد جدًا">PROFICIENT</span></div><div class="gauge" style="--w:75%"></div></div>
+      <div class="skill-row"><div class="top"><span data-ar="أدوات Google السحابية">Google Smart Suite Tools</span><span data-ar="جيد جدًا">PROFICIENT</span></div><div class="gauge" style="--w:80%"></div></div>
+    </div>
+
+    <div class="skill-group">
+      <h3 data-ar="المهارات الفنية والميدانية">TECHNICAL &amp; FIELD CORE</h3>
+      <div class="tag-row">
+        <span class="tag" data-ar="حصر الكميات">Quantity Surveying</span>
+        <span class="tag" data-ar="قراءة المخططات الإنشائية">Structural Blueprint Reading</span>
+        <span class="tag" data-ar="جداول تجهيز حديد التسليح">Bar Bending Schedules</span>
+        <span class="tag" data-ar="صيانة الطرق / الإسفلت">Road / Asphalt Maintenance</span>
+        <span class="tag" data-ar="تطبيق السلامة في الموقع">Site HSE Implementation</span>
+        <span class="tag" data-ar="فحوصات المواد المخبرية">Lab Material Testing</span>
+        <span class="tag" data-ar="التدريس الأكاديمي">Academic Lecturing</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3 data-ar="التميز الإداري">ADMINISTRATIVE EXCELLENCE</h3>
+      <div class="tag-row">
+        <span class="tag" data-ar="الأعمال السكرتارية التنفيذية">Executive Secretarial Duties</span>
+        <span class="tag" data-ar="تنسيق المكتب الهندسي">Office Coordination</span>
+        <span class="tag" data-ar="متابعة التوثيق">Documentation Tracking</span>
+        <span class="tag" data-ar="إدارة السجلات">Records Management</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3 data-ar="اللغات">LANGUAGES</h3>
+      <div class="skill-row"><div class="top"><span data-ar="العربية">Arabic</span><span data-ar="اللغة الأم">NATIVE</span></div><div class="gauge" style="--w:100%"></div></div>
+      <div class="skill-row"><div class="top"><span data-ar="الإنجليزية">English</span><span data-ar="متقدم · شهادة توفل">ADVANCED · TOEFL CERT.</span></div><div class="gauge" style="--w:82%"></div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs" class="blueprint dark">
+  <div class="sec-head"><span class="sec-num">05</span><h2 data-ar="الشهادات والدورات التدريبية">Certifications &amp; Training</h2><div class="rule"></div></div>
+  <div class="cert-list">
+    <div class="cert-row"><div class="yr">2025</div><div class="name" data-ar="شهادة حصر الكميات المتقدم (15 ساعة)">Advanced Quantity Surveying Certification (15 Hrs)</div><div class="org" data-ar="مركز تدريب المهندسين، نقابة المهندسين">Engineers Training Center, JEA</div></div>
+    <div class="cert-row"><div class="yr">2023</div><div class="name" data-ar="شهادة إعداد اختبار التوفل (120 ساعة / 12 مستوى)">TOEFL Preparation Certificate (120 Hrs / 12 Levels)</div><div class="org" data-ar="المعهد البريطاني الدولي للتعليم">British International Learning Institute</div></div>
+    <div class="cert-row"><div class="yr">2021</div><div class="name" data-ar="السكرتارية التنفيذية وإدارة المكاتب (25 ساعة)">Executive Secretarial &amp; Office Management (25 Hrs)</div><div class="org" data-ar="مركز أخو عميرة للتدريب">Akhu Omaira Training Center</div></div>
+    <div class="cert-row"><div class="yr">2020</div><div class="name" data-ar="تطبيق معايير السلامة والصحة المهنية والنظافة الشخصية">Safety, Occupational Health Prevention &amp; Personal Hygiene</div><div class="org" data-ar="المجلس الوطني للسياحة والضيافة">Tourism &amp; Hospitality National Council</div></div>
+    <div class="cert-row"><div class="yr">2018</div><div class="name" data-ar="ورشة نظم المعلومات الجغرافية وإنشاء قواعد البيانات (5 ساعات)">GIS &amp; Database Creation Workshop (5 Hrs)</div><div class="org" data-ar="نقابة المهندسين الأردنيين">Jordan Engineers Association</div></div>
+    <div class="cert-row"><div class="yr">2018</div><div class="name" data-ar="دورة تخصصية في إدارة الطاقة (24 ساعة)">Energy Management Specialization Course (24 Hrs)</div><div class="org" data-ar="مركز تدريب المهندسين، نقابة المهندسين">Engineers Training Center, JEA</div></div>
+    <div class="cert-row"><div class="yr">2018</div><div class="name" data-ar="تخطيط وتنفيذ ومتابعة صيانة الطرق (18 ساعة)">Road Maintenance Planning, Execution &amp; Monitoring (18 Hrs)</div><div class="org" data-ar="برنامج USAID — CITIES">USAID — CITIES Program</div></div>
+    <div class="cert-row"><div class="yr">2018</div><div class="name" data-ar="التقييم الفني لمشاكل المباني الإنشائية القائمة (6 ساعات)">Technical Evaluation of Existing Structural Problems (6 Hrs)</div><div class="org" data-ar="نقابة المهندسين الأردنيين">Jordan Engineers Association</div></div>
+    <div class="cert-row"><div class="yr">2018</div><div class="name" data-ar="دورة تطبيقات Google السحابية الاحترافية (24 ساعة)">Google Professional Cloud Applications Course (24 Hrs)</div><div class="org" data-ar="مركز تدريب المهندسين، نقابة المهندسين">Engineers Training Center, JEA</div></div>
+    <div class="cert-row"><div class="yr">2016</div><div class="name" data-ar="التحليل والتصميم الإنشائي باستخدام PROKON (24 ساعة)">Structural Analysis &amp; Design using PROKON (24 Hrs)</div><div class="org" data-ar="مركز تدريب المهندسين، نقابة المهندسين">Engineers Training Center, JEA</div></div>
+    <div class="cert-row"><div class="yr">2015</div><div class="name" data-ar="أساسيات حصر كميات الإنشاءات (24 ساعة)">Foundational Construction Quantity Surveying (24 Hrs)</div><div class="org" data-ar="مركز تدريب المهندسين، نقابة المهندسين">Engineers Training Center, JEA</div></div>
+    <div class="cert-row"><div class="yr">2015</div><div class="name" data-ar="قراءة وتدقيق المخططات الإنشائية الهندسية (24 ساعة)">Reading &amp; Auditing Structural Engineering Drawings (24 Hrs)</div><div class="org" data-ar="مركز تدريب المهندسين، نقابة المهندسين">Engineers Training Center, JEA</div></div>
+    <div class="cert-row"><div class="yr">2015</div><div class="name" data-ar="نمذجة Autodesk Revit Structure 2014 (BIM) (24 ساعة)">Autodesk Revit Structure 2014 BIM Modeling (24 Hrs)</div><div class="org" data-ar="مركز تدريب المهندسين">Engineers Training Center</div></div>
+    <div class="cert-row"><div class="yr">2015</div><div class="name" data-ar="ورشة التسويق الذاتي المهني والتطوير الوظيفي">Professional Self-Marketing &amp; Career Development Workshop</div><div class="org" data-ar="مركز القنطرة لتنمية الموارد البشرية">Al-Qantara Center for HR Development</div></div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP -->
+<section id="membership">
+  <div class="sec-head"><span class="sec-num">06</span><h2 data-ar="العضوية المهنية">Professional Membership</h2><div class="rule"></div></div>
+  <div class="membership">
+    <div class="seal"><div class="id">142204</div><div class="small" data-ar="عضو النقابة">JEA MEMBER</div></div>
+    <div class="membership-text">
+      <h3 data-ar="نقابة المهندسين الأردنيين">Jordan Engineers Association</h3>
+      <p data-ar="عضو مهني مسجل ومرخّص بشكل كامل في نقابة المهندسين الأردنيين — شعبة الهندسة المدنية، قسم المباني والإنشاءات، فرع هندسة تشييد المباني — منذ 5 نوفمبر 2017.">Fully registered and licensed Professional Member of the Jordan Engineers Association — Civil Engineering Division, Buildings &amp; Structures Section, Building Construction Engineering Branch — since November 5, 2017.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER / CONTACT -->
+<footer class="blueprint">
+  <h2 data-ar="لنبنِ شيئًا متينًا">Let's Build Something Solid</h2>
+  <p data-ar="مهتمة بفرص العمل في الإشراف على المواقع المدنية، الإشراف الإنشائي، وحصر الكميات في الأردن والمنطقة.">Open to civil site engineering, structural supervision, and quantity surveying opportunities across Jordan and the region.</p>
+  <div class="cta-row">
+    <a class="btn solid" href="mailto:weamalawad93@gmail.com" data-ar="البريد الإلكتروني — weamalawad93@gmail.com">EMAIL — weamalawad93@gmail.com</a>
+    <a class="btn" href="tel:+962779643716" data-ar="اتصال — 7964 3716 7 962+">CALL — +962 7 7964 3716</a>
+    <a class="btn" href="https://www.linkedin.com/in/weam-alawad-691593342?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener" data-ar="صفحة لينكدإن">LINKEDIN PROFILE</a>
+    <a class="btn" href="CV_Weam_Wael_Alawad_English_ATS.docx" download="CV_Weam_Wael_Alawad_English_ATS.docx" data-ar="تنزيل السيرة الذاتية — الإنجليزية">DOWNLOAD CV — ENGLISH</a>
+    <a class="btn" href="CV_Weam_Wael_Alawad_Arabic_Elegant.docx" download="CV_Weam_Wael_Alawad_Arabic_Elegant.docx" data-ar="تنزيل السيرة الذاتية — العربية">DOWNLOAD CV — ARABIC</a>
+  </div>
+  <div class="foot-note" data-ar="وئام وائل شفيق العوض &nbsp;·&nbsp; مهندس مدني مواقع &nbsp;·&nbsp; معان، الأردن &nbsp;·&nbsp; رقم عضوية النقابة 142204">WEAM WAEL SHAFIQ ALAWAD &nbsp;·&nbsp; CIVIL SITE ENGINEER &nbsp;·&nbsp; MA'AN, JORDAN &nbsp;·&nbsp; JEA NO. 142204</div>
+</footer>
+
+<script>
+(function(){
+  var isAr = false;
+  var btn = document.getElementById('langToggle');
+  var btnLabelEn = 'AR — العربية';
+  var btnLabelAr = 'EN — English';
+
+  function applyLang(ar){
+    document.querySelectorAll('[data-ar]').forEach(function(el){
+      if(el.id === 'langToggle') return;
+      if(!el.dataset.enHtml){ el.dataset.enHtml = el.innerHTML; }
+      el.innerHTML = ar ? el.getAttribute('data-ar') : el.dataset.enHtml;
+    });
+    document.documentElement.setAttribute('dir', ar ? 'rtl' : 'ltr');
+    document.documentElement.setAttribute('lang', ar ? 'ar' : 'en');
+    btn.lastChild.textContent = ar ? btnLabelAr : btnLabelEn;
+  }
+
+  btn.addEventListener('click', function(){
+    isAr = !isAr;
+    applyLang(isAr);
+  });
+})();
+</script>
+
+</body>
+</html>
